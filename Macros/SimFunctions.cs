@@ -203,7 +203,7 @@ namespace PR2Macro.Macros
                 points = MacroController.Find(screen, rememberMe);
                 await Task.Delay(50);
             }
-            if ((server.Equals("Derron") || server.Equals("!! Derron")) && currentServer != "Derron")
+            if ((server.Equals("Derron") || server.Equals("!! Derron")) && (currentServer != "Derron" || currentServer != "!! Derron"))
             {
                 //Bitmap derron;
                 //if (server.Contains("!! "))
@@ -232,7 +232,7 @@ namespace PR2Macro.Macros
                 //derron.Dispose();
                 currentServer = "Derron";
             }
-            else if ((server.Equals("Carina") || server.Equals("!! Carina")) && currentServer != "Carina")
+            else if ((server.Equals("Carina") || server.Equals("!! Carina")) && (currentServer != "Carina" || currentServer != "!! Carina"))
             {
                 Bitmap carina;
                 if (server.Contains("!! "))
@@ -261,7 +261,7 @@ namespace PR2Macro.Macros
                 carina.Dispose();
                 currentServer = "Carina";
             }
-            else if ((server.Equals("Grayan") || server.Equals("!! Grayan")) && currentServer != "Grayan")
+            else if ((server.Equals("Grayan") || server.Equals("!! Grayan")) && (currentServer != "Grayan" || currentServer != "!! Grayan"))
             {
                 Bitmap grayan;
                 if (server.Contains("!! "))
@@ -290,12 +290,12 @@ namespace PR2Macro.Macros
                 grayan.Dispose();
                 currentServer = "Grayan";
             }
-            else if ((server.Equals("Fitz") || server.Equals("!! Fitz")) && currentServer != "Fitz")
+            else if ((server.Equals("Fitz") || server.Equals("!! Fitz")) && (currentServer != "Fitz" || currentServer != "!! Fitz"))
             {
                 Bitmap fitz;
                 if (server.Contains("!! "))
                 {
-                    fitz = new Bitmap(Resources.fitz, new Size(int.Parse(Math.Round(Resources.fitz.Width / 550.0 * pr2Width).ToString()), int.Parse(Math.Round(Resources.fitz.Height / 400.0 * pr2Height).ToString())));
+                    fitz = new Bitmap(Resources.fitzHH, new Size(int.Parse(Math.Round(Resources.fitzHH.Width / 550.0 * pr2Width).ToString()), int.Parse(Math.Round(Resources.fitzHH.Height / 400.0 * pr2Height).ToString())));
                 }
                 else
                 {
