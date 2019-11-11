@@ -230,7 +230,6 @@ namespace PR2Macro.Macros
                 //    MacroController.LeftClick();
                 //}
                 //derron.Dispose();
-                currentServer = "Derron";
             }
             else if ((server.Equals("Carina") || server.Equals("!! Carina")) && (currentServer != "Carina" || currentServer != "!! Carina"))
             {
@@ -259,7 +258,6 @@ namespace PR2Macro.Macros
                     MacroController.LeftClick();
                 }
                 carina.Dispose();
-                currentServer = "Carina";
             }
             else if ((server.Equals("Grayan") || server.Equals("!! Grayan")) && (currentServer != "Grayan" || currentServer != "!! Grayan"))
             {
@@ -288,7 +286,6 @@ namespace PR2Macro.Macros
                     MacroController.LeftClick();
                 }
                 grayan.Dispose();
-                currentServer = "Grayan";
             }
             else if ((server.Equals("Fitz") || server.Equals("!! Fitz")) && (currentServer != "Fitz" || currentServer != "!! Fitz"))
             {
@@ -317,7 +314,6 @@ namespace PR2Macro.Macros
                     MacroController.LeftClick();
                 }
                 fitz.Dispose();
-                currentServer = "Fitz";
             }
             else if (server.Equals("Tournament") && currentServer != "Tournament")
             {
@@ -338,8 +334,8 @@ namespace PR2Macro.Macros
                     MacroController.LeftClick();
                 }
                 tournament.Dispose();
-                currentServer = "Tournament";
             }
+            currentServer = server;
             rememberMe.Dispose();
         }
 
