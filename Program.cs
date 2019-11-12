@@ -13,6 +13,10 @@ namespace PR2Macro
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            AppDomain.CurrentDomain.UnhandledException += (sender, eventArg) =>
+            {
+                MessageBox.Show(eventArg.ExceptionObject.ToString());
+            };
             Application.Run(new MainForm());
         }
     }

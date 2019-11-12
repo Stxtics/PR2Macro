@@ -36,14 +36,20 @@ namespace PR2Macro
             {
                 foreach (string user in Settings.Default.UserSearches)
                 {
-                    search.Items.Add(user);
+                    if (user != null && user.Length > 0)
+                    {
+                        search.Items.Add(user);
+                    }
                 }
             }
             else
             {
                 foreach (string title in Settings.Default.TitleSearches)
                 {
-                    search.Items.Add(title);
+                    if (title != null && title.Length > 0)
+                    {
+                        search.Items.Add(title);
+                    }
                 }
             }
 
@@ -53,10 +59,13 @@ namespace PR2Macro
             account4.Items.Clear();
             foreach (string acc in Settings.Default.Accounts)
             {
-                account1.Items.Add(acc.Split('|').First());
-                account2.Items.Add(acc.Split('|').First());
-                account3.Items.Add(acc.Split('|').First());
-                account4.Items.Add(acc.Split('|').First());
+                if (acc != null && acc.Length > 0)
+                {
+                    account1.Items.Add(acc.Split('|').First());
+                    account2.Items.Add(acc.Split('|').First());
+                    account3.Items.Add(acc.Split('|').First());
+                    account4.Items.Add(acc.Split('|').First());
+                }
             }
 
             foreach (Process proc in Process.GetProcesses().Where(p => p.MainWindowHandle != IntPtr.Zero).OrderBy(x => x.ProcessName))
@@ -72,77 +81,116 @@ namespace PR2Macro
 
         private void MainForm_Activated(object sender, EventArgs e)
         {
-            if (searchType.SelectedItem.ToString().Equals("User Name"))
-            {
-                foreach (string user in Settings.Default.UserSearches)
+            int ln = 0;
+            try
+            {  
+                if (searchType.SelectedItem.ToString().Equals("User Name"))
                 {
-                    if (!search.Items.Contains(user))
+                    foreach (string user in Settings.Default.UserSearches)
                     {
-                        search.Items.Add(user);
+                        if (user != null && user.Length > 0)
+                        {
+                            if (!search.Items.Contains(user))
+                            {
+                                search.Items.Add(user);
+                            }
+                        }
+                    }
+                    ln++;
+                    List<string> removeUsers = new List<string>();
+                    foreach (string user in search.Items)
+                    {
+                        if (user != null && user.Length > 0)
+                        {
+                            if (!Settings.Default.UserSearches.Contains(user))
+                            {
+                                removeUsers.Add(user);
+                            }
+                        }
+                    }
+                    ln++;
+                    foreach (string user in removeUsers)
+                    {
+                        if (user != null && user.Length > 0)
+                        {
+                            search.Items.Remove(user);
+                        }
+                    }
+                    ln++;
+                }
+                else
+                {
+                    foreach (string title in Settings.Default.TitleSearches)
+                    {
+                        if (title != null && title.Length > 0)
+                        {
+                            if (!search.Items.Contains(title))
+                            {
+                                search.Items.Add(title);
+                            }
+                        }
+                    }
+                    List<string> removeTitles = new List<string>();
+                    foreach (string title in search.Items)
+                    {
+                        if (title != null && title.Length > 0)
+                        {
+                            if (!Settings.Default.TitleSearches.Contains(title))
+                            {
+                                removeTitles.Add(title);
+                            }
+                        }
+                    }
+                    foreach (string title in removeTitles)
+                    {
+                        if (title != null && title.Length > 0)
+                        {
+                            search.Items.Remove(title);
+                        }
                     }
                 }
-                List<string> removeUsers = new List<string>();
-                foreach (string user in search.Items)
+                foreach (string acc in Settings.Default.Accounts)
                 {
-                    if (!Settings.Default.UserSearches.Contains(user))
+                    if (acc != null && acc.Length > 0)
                     {
-                        removeUsers.Add(user);
+                        string name = acc.Split('|').First();
+                        if (name != null && name.Length > 0 && !account1.Items.Contains(name))
+                        {
+                            account1.Items.Add(name);
+                            account2.Items.Add(name);
+                            account3.Items.Add(name);
+                            account4.Items.Add(name);
+                        }
                     }
                 }
-                foreach (string user in removeUsers)
+                ln++;
+                List<string> removeAccs = new List<string>();
+                foreach (string acc in account1.Items)
                 {
-                    search.Items.Remove(user);
-                }
-            }
-            else
-            {
-                foreach (string title in Settings.Default.TitleSearches)
-                {
-                    if (!search.Items.Contains(title))
+                    if (acc != null && acc.Length > 0)
                     {
-                        search.Items.Add(title);
+                        if (Settings.Default.Accounts.Cast<string>().Where(x => x.Split('|').First().Equals(acc)).Count() < 1)
+                        {
+                            removeAccs.Add(acc);
+                        }
                     }
                 }
-                List<string> removeTitles = new List<string>();
-                foreach (string title in search.Items)
+                ln++;
+                foreach (string acc in removeAccs)
                 {
-                    if (!Settings.Default.TitleSearches.Contains(title))
+                    if (acc != null && acc.Length > 0)
                     {
-                        removeTitles.Add(title);
+                        account1.Items.Remove(acc);
+                        account2.Items.Remove(acc);
+                        account3.Items.Remove(acc);
+                        account4.Items.Remove(acc);
                     }
                 }
-                foreach (string title in removeTitles)
-                {
-                    search.Items.Remove(title);
-                }
+                ln++;
             }
-
-            foreach (string acc in Settings.Default.Accounts)
+            catch(Exception ex)
             {
-                string name = acc.Split('|').First();
-                if (!account1.Items.Contains(name))
-                {
-                    account1.Items.Add(name);
-                    account2.Items.Add(name);
-                    account3.Items.Add(name);
-                    account4.Items.Add(name);
-                }
-            }
-            List<string> removeAccs = new List<string>();
-            foreach (string acc in account1.Items)
-            {
-                if (Settings.Default.Accounts.Cast<string>().Where(x => x.Split('|').First().Equals(acc)).Count() < 1)
-                {
-                    removeAccs.Add(acc);
-                }
-            }
-
-            foreach (string acc in removeAccs)
-            {
-                account1.Items.Remove(acc);
-                account2.Items.Remove(acc);
-                account3.Items.Remove(acc);
-                account4.Items.Remove(acc);
+                MessageBox.Show(ex.Message + ex.StackTrace + "\nLine: " + ln);
             }
         }
 
@@ -153,14 +201,20 @@ namespace PR2Macro
             {
                 foreach (string user in Settings.Default.UserSearches)
                 {
-                    search.Items.Add(user);
+                    if (user != null && user.Length > 0)
+                    {
+                        search.Items.Add(user);
+                    }
                 }
             }
             else
             {
                 foreach (string title in Settings.Default.TitleSearches)
                 {
-                    search.Items.Add(title);
+                    if (title != null && title.Length > 0)
+                    {
+                        search.Items.Add(title);
+                    }
                 }
             }
         }
