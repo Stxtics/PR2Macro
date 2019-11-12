@@ -17,7 +17,10 @@ namespace PR2Macro
         {
             foreach (string acc in Settings.Default.Accounts)
             {
-                account.Items.Add(acc.Split('|').First());
+                if (acc != null && acc.Length > 0)
+                {
+                    account.Items.Add(acc.Split('|').First());
+                }
             }
         }
 
@@ -37,12 +40,15 @@ namespace PR2Macro
                 string username = account.SelectedItem.ToString();
                 foreach (string acc in Settings.Default.Accounts)
                 {
-                    if (acc.Split('|').First().Equals(username))
+                    if (acc != null && acc.Length > 0)
                     {
-                        string password = acc.Split(new char[] { '|' }, 2).Last();
-                        Settings.Default.Accounts.Remove(username + "|" + password);
-                        Settings.Default.Save();
-                        break;
+                        if (acc.Split('|').First().Equals(username))
+                        {
+                            string password = acc.Split(new char[] { '|' }, 2).Last();
+                            Settings.Default.Accounts.Remove(username + "|" + password);
+                            Settings.Default.Save();
+                            break;
+                        }
                     }
                 }
                 MessageBox.Show("Account was removed successfully.");

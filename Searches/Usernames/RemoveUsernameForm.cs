@@ -16,7 +16,10 @@ namespace PR2Macro.Searches.Usernames
         {
             foreach (string user in Settings.Default.UserSearches)
             {
-                username.Items.Add(user);
+                if (user != null && user.Length > 0)
+                {
+                    username.Items.Add(user);
+                }
             }
         }
 

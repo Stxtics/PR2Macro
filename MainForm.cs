@@ -169,7 +169,7 @@ namespace PR2Macro
                 {
                     if (acc != null && acc.Length > 0)
                     {
-                        if (Settings.Default.Accounts.Cast<string>().Where(x => x.Split('|').First().Equals(acc)).Count() < 1)
+                        if (Settings.Default.Accounts.Cast<string>().Where(x => x != null).Where(x => x.Split('|').First().Equals(acc)).Count() < 1)
                         {
                             removeAccs.Add(acc);
                         }

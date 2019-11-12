@@ -22,21 +22,24 @@ namespace PR2Macro.Macros
         {
             foreach (string acc in Settings.Default.Accounts)
             {
-                if (acc1.Equals(acc.Split('|').FirstOrDefault()))
+                if (acc != null && acc.Length > 0)
                 {
-                    account1 = acc;
-                }
-                else if (acc2.Equals(acc.Split('|').FirstOrDefault()))
-                {
-                    account2 = acc;
-                }
-                else if (acc3.Equals(acc.Split('|').FirstOrDefault()))
-                {
-                    account3 = acc;
-                }
-                else if (acc4.Equals(acc.Split('|').FirstOrDefault()))
-                {
-                    account4 = acc;
+                    if (acc1.Equals(acc.Split('|').FirstOrDefault()))
+                    {
+                        account1 = acc;
+                    }
+                    else if (acc2.Equals(acc.Split('|').FirstOrDefault()))
+                    {
+                        account2 = acc;
+                    }
+                    else if (acc3.Equals(acc.Split('|').FirstOrDefault()))
+                    {
+                        account3 = acc;
+                    }
+                    else if (acc4.Equals(acc.Split('|').FirstOrDefault()))
+                    {
+                        account4 = acc;
+                    }
                 }
             }
             if (svr.Contains("!!"))

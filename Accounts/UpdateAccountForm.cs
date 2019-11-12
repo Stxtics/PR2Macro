@@ -17,18 +17,27 @@ namespace PR2Macro
         {
             foreach (string acc in Settings.Default.Accounts)
             {
-                account.Items.Add(acc.Split('|').First());
+                if (acc != null && acc.Length > 0)
+                {
+                    account.Items.Add(acc.Split('|').First());
+                }
             }
         }
 
         private void Account_SelectedIndexChanged(object sender, EventArgs e)
         {
-            username.Text = account.SelectedItem.ToString();
-            foreach (string acc in Settings.Default.Accounts)
+            if (account.SelectedItem != null && account.SelectedItem.ToString().Length > 0)
             {
-                if (acc.Split('|').First().Equals(account.SelectedItem.ToString()))
+                username.Text = account.SelectedItem.ToString();
+                foreach (string acc in Settings.Default.Accounts)
                 {
-                    password.Text = acc.Split(new char[] { '|' }, 2).Last();
+                    if (acc != null && acc.Length > 0)
+                    {
+                        if (acc.Split('|').First().Equals(account.SelectedItem.ToString()))
+                        {
+                            password.Text = acc.Split(new char[] { '|' }, 2).Last();
+                        }
+                    }
                 }
             }
         }
@@ -68,19 +77,25 @@ namespace PR2Macro
                     string oldPassword;
                     foreach (string acc in Settings.Default.Accounts)
                     {
-                        if (acc.Split('|').First().Equals(oldUsername))
+                        if (acc != null && acc.Length > 0)
                         {
-                            oldPassword = acc.Split(new char[] { '|' }, 2).Last();
-                            Settings.Default.Accounts.Remove(oldUsername + "|" + oldPassword);
-                            break;
+                            if (acc.Split('|').First().Equals(oldUsername))
+                            {
+                                oldPassword = acc.Split(new char[] { '|' }, 2).Last();
+                                Settings.Default.Accounts.Remove(oldUsername + "|" + oldPassword);
+                                break;
+                            }
                         }
                     }
                     bool exists = false;
                     foreach (string acc in Settings.Default.Accounts)
                     {
-                        if (acc.Split('|').First().Equals(username.Text, StringComparison.InvariantCultureIgnoreCase))
+                        if (acc != null && acc.Length > 0)
                         {
-                            exists = true;
+                            if (acc.Split('|').First().Equals(username.Text, StringComparison.InvariantCultureIgnoreCase))
+                            {
+                                exists = true;
+                            }
                         }
                     }
                     if (exists)

@@ -16,13 +16,19 @@ namespace PR2Macro.Searches.Titles
         {
             foreach (string title in Settings.Default.TitleSearches)
             {
-                titles.Items.Add(title);
+                if (title != null && title.Length > 0)
+                {
+                    titles.Items.Add(title);
+                }
             }
         }
 
         private void Titles_SelectedIndexChanged(object sender, EventArgs e)
         {
-            newTitle.Text = titles.SelectedItem.ToString();
+            if (titles.SelectedItem != null && titles.SelectedItem.ToString().Length > 0)
+            {
+                newTitle.Text = titles.SelectedItem.ToString();
+            }
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
@@ -49,9 +55,12 @@ namespace PR2Macro.Searches.Titles
                 bool exists = false;
                 foreach (string title in Settings.Default.TitleSearches)
                 {
-                    if (title.Equals(newTitle.Text, StringComparison.InvariantCultureIgnoreCase))
+                    if (title != null && title.Length > 0)
                     {
-                        exists = true;
+                        if (title.Equals(newTitle.Text, StringComparison.InvariantCultureIgnoreCase))
+                        {
+                            exists = true;
+                        }
                     }
                 }
                 if (exists)

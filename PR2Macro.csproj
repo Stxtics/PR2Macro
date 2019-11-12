@@ -26,8 +26,8 @@
     <TargetCulture>en-GB</TargetCulture>
     <ProductName>PR2 Macro</ProductName>
     <PublisherName>Stxtics</PublisherName>
-    <ApplicationRevision>13</ApplicationRevision>
-    <ApplicationVersion>1.0.0.13</ApplicationVersion>
+    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -417,6 +417,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\opera_2019-11-11_23-31-33.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\opera_2019-11-12_16-41-26.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

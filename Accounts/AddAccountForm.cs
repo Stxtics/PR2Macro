@@ -41,9 +41,12 @@ namespace PR2Macro
                 bool exists = false;
                 foreach (string acc in Settings.Default.Accounts)
                 {
-                    if (acc.Split('|').First().Equals(username.Text, StringComparison.InvariantCultureIgnoreCase))
+                    if (acc != null && acc.Length > 0)
                     {
-                        exists = true;
+                        if (acc.Split('|').First().Equals(username.Text, StringComparison.InvariantCultureIgnoreCase))
+                        {
+                            exists = true;
+                        }
                     }
                 }
                 if (exists)

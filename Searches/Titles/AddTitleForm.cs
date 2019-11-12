@@ -28,9 +28,12 @@ namespace PR2Macro.Searches.Titles
                 bool exists = false;
                 foreach (string search in Settings.Default.TitleSearches)
                 {
-                    if (search.Equals(title.Text, StringComparison.InvariantCultureIgnoreCase))
+                    if (search != null && search.Length > 0)
                     {
-                        exists = true;
+                        if (search.Equals(title.Text, StringComparison.InvariantCultureIgnoreCase))
+                        {
+                            exists = true;
+                        }
                     }
                 }
                 if (exists)

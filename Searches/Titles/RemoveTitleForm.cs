@@ -16,7 +16,10 @@ namespace PR2Macro.Searches.Titles
         {
             foreach (string title in Settings.Default.TitleSearches)
             {
-                titles.Items.Add(title);
+                if (title != null && title.Length > 0)
+                {
+                    titles.Items.Add(title);
+                }
             }
         }
 

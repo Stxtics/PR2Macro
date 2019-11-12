@@ -16,13 +16,19 @@ namespace PR2Macro.Searches.Usernames
         {
             foreach (string user in Settings.Default.UserSearches)
             {
-                username.Items.Add(user);
+                if (user != null && user.Length > 0)
+                {
+                    username.Items.Add(user);
+                }
             }
         }
 
         private void Username_SelectedIndexChanged(object sender, EventArgs e)
         {
-            newUsername.Text = username.SelectedItem.ToString();
+            if (username.SelectedItem != null && username.SelectedItem.ToString().Length > 0)
+            {
+                newUsername.Text = username.SelectedItem.ToString();
+            }
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
@@ -53,9 +59,12 @@ namespace PR2Macro.Searches.Usernames
                 bool exists = false;
                 foreach (string user in Settings.Default.UserSearches)
                 {
-                    if (user.Equals(newUsername.Text, StringComparison.InvariantCultureIgnoreCase))
+                    if (user != null && user.Length > 0)
                     {
-                        exists = true;
+                        if (user.Equals(newUsername.Text, StringComparison.InvariantCultureIgnoreCase))
+                        {
+                            exists = true;
+                        }
                     }
                 }
                 if (exists)

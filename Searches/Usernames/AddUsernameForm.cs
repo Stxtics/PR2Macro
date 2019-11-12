@@ -32,9 +32,12 @@ namespace PR2Macro.Searches.Usernames
                 bool exists = false;
                 foreach (string user in Settings.Default.UserSearches)
                 {
-                    if (user.Equals(username.Text, StringComparison.InvariantCultureIgnoreCase))
+                    if (user != null && user.Length > 0)
                     {
-                        exists = true;
+                        if (user.Equals(username.Text, StringComparison.InvariantCultureIgnoreCase))
+                        {
+                            exists = true;
+                        }
                     }
                 }
                 if (exists)
