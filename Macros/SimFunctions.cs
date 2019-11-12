@@ -239,7 +239,7 @@ namespace PR2Macro.Macros
                 Bitmap carina;
                 if (server.Contains("!! "))
                 {
-                    carina = new Bitmap(Resources.carina, new Size(int.Parse(Math.Round(Resources.carina.Width / 550.0 * pr2Width).ToString()), int.Parse(Math.Round(Resources.carina.Height / 400.0 * pr2Height).ToString())));
+                    carina = new Bitmap(Resources.carinaHH, new Size(int.Parse(Math.Round(Resources.carinaHH.Width / 550.0 * pr2Width).ToString()), int.Parse(Math.Round(Resources.carinaHH.Height / 400.0 * pr2Height).ToString())));
                 }
                 else
                 {
