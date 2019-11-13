@@ -26,8 +26,8 @@
     <TargetCulture>en-GB</TargetCulture>
     <ProductName>PR2 Macro</ProductName>
     <PublisherName>Stxtics</PublisherName>
-    <ApplicationRevision>3</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -54,7 +54,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>490142411E5109D6D8A330CA1BF70C8DB8896C59</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>0F6EDDAE7D51F46D09803D9CD002B7718FE1CADB</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>PR2Macro_TemporaryKey.pfx</ManifestKeyFile>
@@ -64,6 +64,12 @@
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>PR2Macro_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
@@ -192,6 +198,7 @@
     <EmbeddedResource Include="Searches\Usernames\UpdateUsernameForm.resx">
       <DependentUpon>UpdateUsernameForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="PR2Macro_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

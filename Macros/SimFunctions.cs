@@ -44,7 +44,7 @@ namespace PR2Macro.Macros
             }
             if (svr.Contains("!!"))
             {
-                server = svr.Split(' ').ElementAt(1);
+                server = "!! " + svr.Split(' ').ElementAt(1);
             }
             else
             {
